@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+#clock {
+  width: 450px;
+  height: 450px;
+  background:url(clockbg.jpg) no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  position: relative;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+#clock #secArrow {
+    position: absolute;
+    height: 198px;
+    width: 2px;
+    top: 233px;
+    left: 233px;
+    transform-origin: 2px 0px; 
+    background: #00BFFF;
+}
+
+#clock #minArrow {
+    position: absolute;
+    height: 208px;
+    width: 4px;
+    border-radius: 2px;
+    background: #1E90FF;
+    top: 233px;
+    left: 233px;
+    transform-origin: 2px 0px;
+}
+
+ #clock #hourArrow {
+    position: absolute;
+    height: 160px;
+    width: 10px;
+    background: #0000FF;
+    border-radius: 5px;
+   	top: 233px;
+    left: 233px;
+    transform-origin: 2px 0px;
+ }
+ #clock #center{
+ 	position: absolute;
+ 	width:20px;
+ 	height: 20px;
+ 	border-radius: 50%;
+ 	background: #BA55D3;
+ 	top: 224px;
+    left: 224px;
+ }
+
+	</style>
+</head>
+<body>
+<div id="clock">
+	<div id="secArrow"></div>
+	<div id="minArrow"></div>
+	<div id="hourArrow"></div>
+	<div id="center"></div>		
+</div>
+<p></p>
+<script type="text/javascript">
+			secArrow();
+			minArrow();
+			hourArrow();
+			
+			
+			function secArrow(){
+				d=new Date();
+				sec=d.getSeconds();				
+				time=(sec-30)*6;
+				document.getElementById("secArrow").style.transform="rotateZ("+time+"deg)";
+			}
+			
+			function minArrow(){
+				d=new Date();
+				min=d.getMinutes();				
+				time=(min-30)*6;				
+				document.getElementById("minArrow").style.transform="rotateZ("+time+"deg)";
+			}
+			
+			function hourArrow(){
+				d=new Date();
+				hour=d.getHours();
+				console.log(hour+" "+min);
+				if(hour>12){hour=hour-12};				
+				time=180+(hour*30)+Math.floor(min/12)*6					
+				document.getElementById("hourArrow").style.transform="rotateZ("+time+"deg)";
+			}
+			
+	
+			setInterval(secArrow,1000);
+			setInterval(minArrow,60000);
+			setInterval(hourArrow,720000);
+</script>
+
+</body>
+</html>
